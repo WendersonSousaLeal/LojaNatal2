@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Natal Mágico - Sua Loja de Decoração Natalina</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset e configurações gerais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --verde-escuro: #0a5c36;
+            --verde-medio: #1e7e5c;
+            --verde-claro: #2d9970;
+            --vermelho-natal: #c41e3a;
+            --vermelho-escuro: #a1162c;
+            --dourado: #d4af37;
+            --branco: #ffffff;
+            --off-white: #f8f9fa;
+            --cinza-claro: #e9ecef;
+            --cinza: #6c757d;
+            --sombra: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transicao: all 0.3s ease;
+        }
+
+        body {
+            background-color: var(--off-white);
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--verde-escuro) 0%, var(--verde-medio) 100%);
+            color: var(--branco);
+            padding: 1rem 0;
+            box-shadow: var(--sombra);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(to right, var(--dourado), #fff);
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        /* Menu com Flexbox */
+        .menu {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        .menu a {
+            color: var(--branco);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            transition: var(--transicao);
+            position: relative;
+        }
+
+        .menu a:hover, .menu a.ativo {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--dourado);
+            transition: var(--transicao);
+            transform: translateX(-50%);
+        }
+
+        .menu a:hover::after, .menu a.ativo::after {
+            width: 80%;
+        }
+
+        .carrinho-icon {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .carrinho-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--vermelho-natal);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        /* Banner Principal */
+        .banner {
+            background: linear-gradient(rgba(10, 92, 54, 0.8), rgba(30, 126, 92, 0.8)), url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--branco);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: 100% 100%;
+        }
+
+        .banner-content {
+            max-width: 800px;
+            padding: 2rem;
+            z-index: 1;
+        }
+
+        .banner h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+            animation: fadeInDown 1s ease;
+        }
+
+        .banner p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(to right, var(--vermelho-natal), var(--vermelho-escuro));
+            color: var(--branco);
+            padding: 0.8rem 2.5rem;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: var(--transicao);
+            box-shadow: 0 4px 15px rgba(196, 30, 58, 0.3);
+            animation: pulse 2s infinite;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(196, 30, 58, 0.4);
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 4px 15px rgba(196, 30, 58, 0.3);
+            }
+            50% {
+                box-shadow: 0 4px 20px rgba(196, 30, 58, 0.6);
+            }
+            100% {
+                box-shadow: 0 4px 15px rgba(196, 30, 58, 0.3);
+            }
+        }
+
+        /* Contador para o Natal */
+        .contador-natal {
+            background: linear-gradient(135deg, var(--verde-escuro), var(--verde-medio));
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+            margin-top: -1px;
+        }
+
+        .contador-natal h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .contador {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .contador-item {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 1rem;
+            border-radius: 10px;
+            min-width: 100px;
+        }
+
+        .contador-numero {
+            font-size: 2.5rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .contador-texto {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Seção de Destaques */
+        .destaques {
+            padding: 5rem 0;
+            background-color: var(--branco);
+        }
+
+        .destaques h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--verde-escuro);
+            font-size: 2.5rem;
+            position: relative;
+        }
+
+        .destaques h2::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, var(--vermelho-natal), var(--dourado));
+            margin: 0.5rem auto;
+            border-radius: 2px;
+        }
+
+        .produtos-destaque {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .produto {
+            background-color: var(--branco);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--sombra);
+            transition: var(--transicao);
+            position: relative;
+        }
+
+        .produto:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .produto-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 15px 15px 0 0;
+            transition: var(--transicao);
+        }
+
+        .produto:hover .produto-img {
+            transform: scale(1.05);
+        }
+
+        .produto-info {
+            padding: 1.5rem;
+        }
+
+        .produto h3 {
+            margin-bottom: 0.5rem;
+            color: var(--verde-escuro);
+            font-size: 1.3rem;
+        }
+
+        .produto-desc {
+            color: var(--cinza);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .produto-preco {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--vermelho-natal);
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .produto-preco span {
+            font-size: 1rem;
+            color: var(--cinza);
+            text-decoration: line-through;
+        }
+
+        .btn-comprar {
+            background: linear-gradient(to right, var(--verde-medio), var(--verde-claro));
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            width: 100%;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: var(--transicao);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-comprar:hover {
+            background: linear-gradient(to right, var(--verde-escuro), var(--verde-medio));
+        }
+
+        .etiqueta {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--vermelho-natal);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        /* Newsletter */
+        .newsletter {
+            background: linear-gradient(135deg, var(--verde-escuro) 0%, var(--verde-medio) 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .newsletter h2 {
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .newsletter p {
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .form-newsletter {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+            border-radius: 50px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-newsletter input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .form-newsletter button {
+            background: var(--dourado);
+            color: var(--verde-escuro);
+            border: none;
+            padding: 0 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transicao);
+        }
+
+        .form-newsletter button:hover {
+            background: #e6c158;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-col h3 {
+            color: var(--dourado);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-col a {
+            color: #ccc;
+            text-decoration: none;
+            transition: var(--transicao);
+        }
+
+        .footer-col a:hover {
+            color: var(--dourado);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: var(--transicao);
+        }
+
+        .social-links a:hover {
+            background: var(--dourado);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        /* Efeito de Neve */
+        .neve {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1001;
+        }
+
+        .floco {
+            position: absolute;
+            top: -10px;
+            color: white;
+            font-size: 1rem;
+            opacity: 0.8;
+            animation: cair linear infinite;
+        }
+
+        @keyframes cair {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        /* Modal Carrinho */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 2rem;
+            position: relative;
+            animation: modalFadeIn 0.3s ease;
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--cinza);
+            transition: var(--transicao);
+        }
+
+        .close-modal:hover {
+            color: var(--vermelho-natal);
+        }
+
+        .modal h2 {
+            color: var(--verde-escuro);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .carrinho-vazio {
+            text-align: center;
+            padding: 2rem;
+            color: var(--cinza);
+        }
+
+        .carrinho-itens {
+            margin-bottom: 1.5rem;
+        }
+
+        .carrinho-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--cinza-claro);
+        }
+
+        .carrinho-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-right: 1rem;
+        }
+
+        .carrinho-item-info {
+            flex: 1;
+        }
+
+        .carrinho-item-nome {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .carrinho-item-preco {
+            color: var(--vermelho-natal);
+            font-weight: bold;
+        }
+
+        .carrinho-item-quantidade {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 0.5rem 0;
+        }
+
+        .carrinho-item-quantidade button {
+            background: var(--cinza-claro);
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carrinho-total {
+            text-align: right;
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin: 1.5rem 0;
+            color: var(--verde-escuro);
+        }
+
+        .btn-finalizar {
+            background: linear-gradient(to right, var(--verde-medio), var(--verde-claro));
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            width: 100%;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transicao);
+            font-size: 1.1rem;
+        }
+
+        .btn-finalizar:hover {
+            background: linear-gradient(to right, var(--verde-escuro), var(--verde-medio));
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .menu {
+                gap: 0.5rem;
+            }
+
+            .menu a {
+                padding: 0.5rem 0.8rem;
+                font-size: 0.9rem;
+            }
+
+            .banner h2 {
+                font-size: 2.5rem;
+            }
+
+            .banner p {
+                font-size: 1.1rem;
+            }
+
+            .contador {
+                gap: 1rem;
+            }
+
+            .contador-item {
+                min-width: 80px;
+                padding: 0.8rem;
+            }
+
+            .contador-numero {
+                font-size: 2rem;
+            }
+
+            .form-newsletter {
+                flex-direction: column;
+                border-radius: 10px;
+            }
+
+            .form-newsletter input, .form-newsletter button {
+                width: 100%;
+                border-radius: 0;
+            }
+
+            .form-newsletter input {
+                border-radius: 10px 10px 0 0;
+            }
+
+            .form-newsletter button {
+                border-radius: 0 0 10px 10px;
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Efeito de Neve -->
+    <div class="neve" id="neve"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-icon">🎄</div>
+                <h1>Natal Mágico</h1>
+            </div>
+            <nav>
+                <ul class="menu">
+                    <li><a href="#" class="ativo">Início</a></li>
+                    <li><a href="#">Produtos</a></li>
+                    <li><a href="#">Decorações</a></li>
+                    <li><a href="#">Ofertas</a></li>
+                    <li><a href="#">Contato</a></li>
+                    <li class="carrinho-icon" id="abrir-carrinho">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="carrinho-count">0</span>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Banner Principal -->
+    <section class="banner">
+        <div class="banner-content">
+            <h2>Faça deste Natal o mais Especial</h2>
+            <p>Descubra decorações encantadoras que transformarão sua casa em um verdadeiro conto de fadas natalino</p>
+            <a href="#" class="btn">Explorar Coleção</a>
+        </div>
+    </section>
+
+    <!-- Contador para o Natal -->
+    <section class="contador-natal">
+        <div class="container">
+            <h3>Contagem Regressiva para o Natal</h3>
+            <div class="contador">
+                <div class="contador-item">
+                    <span class="contador-numero" id="dias">00</span>
+                    <span class="contador-texto">Dias</span>
+                </div>
+                <div class="contador-item">
+                    <span class="contador-numero" id="horas">00</span>
+                    <span class="contador-texto">Horas</span>
+                </div>
+                <div class="contador-item">
+                    <span class="contador-numero" id="minutos">00</span>
+                    <span class="contador-texto">Minutos</span>
+                </div>
+                <div class="contador-item">
+                    <span class="contador-numero" id="segundos">00</span>
+                    <span class="contador-texto">Segundos</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Produtos em Destaque -->
+    <section class="destaques">
+        <div class="container">
+            <h2>Produtos em Destaque</h2>
+            <div class="produtos-destaque">
+                <!-- Produto 1 -->
+                <div class="produto">
+                    <div class="etiqueta">Oferta</div>
+                    <img src="https://m.media-amazon.com/images/S/aplus-media-library-service-media/3512a597-68ca-4547-92f4-6cb7af1e5849.__CR0,0,970,600_PT0_SX970_V1___.png" alt="Árvore de Natal Premium" class="produto-img">
+                    <div class="produto-info">
+                        <h3>Árvore de Natal Premium</h3>
+                        <p class="produto-desc">Árvore artificial de 2m com luzes LED integradas</p>
+                        <div class="produto-preco">
+                            R$ 299,90 <span>R$ 349,90</span>
+                        </div>
+                        <button class="btn-comprar" data-id="1" data-nome="Árvore de Natal Premium" data-preco="299.90" data-imagem="https://m.media-amazon.com/images/S/aplus-media-library-service-media/3512a597-68ca-4547-92f4-6cb7af1e5849.__CR0,0,970,600_PT0_SX970_V1___.png">
+                            <i class="fas fa-shopping-cart"></i> Adicionar ao Carrinho
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Produto 2 -->
+                <div class="produto">
+                    <img src="https://img.elo7.com.br/product/zoom/1490382/guirlanda-luxo-45-com-led-champ-dourada-natal-led.jpg" alt="Guirlanda Natalina" class="produto-img">
+                    <div class="produto-info">
+                        <h3>Guirlanda Decorativa</h3>
+                        <p class="produto-desc">Guirlanda de pinheiro natural com enfeites dourados</p>
+                        <div class="produto-preco">
+                            R$ 89,90
+                        </div>
+                        <button class="btn-comprar" data-id="2" data-nome="Guirlanda Decorativa" data-preco="89.90" data-imagem="https://img.elo7.com.br/product/zoom/1490382/guirlanda-luxo-45-com-led-champ-dourada-natal-led.jpg">
+                            <i class="fas fa-shopping-cart"></i> Adicionar ao Carrinho
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Produto 3 -->
+                <div class="produto">
+                    <div class="etiqueta">Novidade</div>
+                    <img src="https://xmastree.com.au/wp-content/uploads/2021/04/1200x1600Vividd-600x800.jpg" alt="Bolas de Natal" class="produto-img">
+                    <div class="produto-info">
+                        <h3>Kit Bolas Natalinas</h3>
+                        <p class="produto-desc">Conjunto com 24 bolas decorativas em várias cores</p>
+                        <div class="produto-preco">
+                            R$ 49,90
+                        </div>
+                        <button class="btn-comprar" data-id="3" data-nome="Kit Bolas Natalinas" data-preco="49.90" data-imagem="https://xmastree.com.au/wp-content/uploads/2021/04/1200x1600Vividd-600x800.jpg">
+                            <i class="fas fa-shopping-cart"></i> Adicionar ao Carrinho
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Produto 4 -->
+                <div class="produto">
+                    <img src="https://cdn.awsli.com.br/761/761999/produto/43333612/4d9954d08a.jpg" alt="Luzes de Natal" class="produto-img">
+                    <div class="produto-info">
+                        <h3>Luzes de Natal LED</h3>
+                        <p class="produto-desc">Fita de LED colorida de 5 metros com controle remoto</p>
+                        <div class="produto-preco">
+                            R$ 79,90
+                        </div>
+                        <button class="btn-comprar" data-id="4" data-nome="Luzes de Natal LED" data-preco="79.90" data-imagem="https://cdn.awsli.com.br/761/761999/produto/43333612/4d9954d08a.jpg">
+                            <i class="fas fa-shopping-cart"></i> Adicionar ao Carrinho
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container">
+            <h2>Receba Ofertas Exclusivas</h2>
+            <p>Inscreva-se em nossa newsletter e seja o primeiro a saber sobre promoções e novidades</p>
+            <form class="form-newsletter" id="form-newsletter">
+                <input type="email" placeholder="Seu melhor e-mail" required>
+                <button type="submit">Inscrever</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>Natal Mágico</h3>
+                    <p>Transformando o Natal dos brasileiros há mais de 15 anos com produtos de qualidade e atendimento excepcional.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="#">Início</a></li>
+                        <li><a href="#">Produtos</a></li>
+                        <li><a href="#">Decorações</a></li>
+                        <li><a href="#">Ofertas</a></li>
+                        <li><a href="#">Sobre Nós</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Categorias</h3>
+                    <ul>
+                        <li><a href="#">Árvores de Natal</a></li>
+                        <li><a href="#">Enfeites</a></li>
+                        <li><a href="#">Iluminação</a></li>
+                        <li><a href="#">Guirlandas</a></li>
+                        <li><a href="#">Presentes</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contato</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Rua das Flores, 123 - Centro</li>
+                        <li><i class="fas fa-phone"></i> (11) 1234-5678</li>
+                        <li><i class="fas fa-envelope"></i> contato@natalmagico.com.br</li>
+                        <li><i class="fas fa-clock"></i> Seg-Sex: 9h-18h | Sáb: 9h-13h</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Natal Mágico. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal Carrinho -->
+    <div class="modal" id="modal-carrinho">
+        <div class="modal-content">
+            <span class="close-modal" id="fechar-carrinho">&times;</span>
+            <h2>Seu Carrinho de Compras</h2>
+            <div class="carrinho-itens" id="carrinho-itens">
+                <!-- Itens do carrinho serão inseridos aqui via JavaScript -->
+            </div>
+            <div class="carrinho-total" id="carrinho-total">
+                Total: R$ 0,00
+            </div>
+            <button class="btn-finalizar">Finalizar Compra</button>
+        </div>
+    </div>
+
+    <script>
+        // Contador regressivo para o Natal
+        function atualizarContadorNatal() {
+            const agora = new Date();
+            const natal = new Date(agora.getFullYear(), 11, 25); // 25 de dezembro
+            
+            // Se já passou o Natal deste ano, calcular para o próximo ano
+            if (agora > natal) {
+                natal.setFullYear(natal.getFullYear() + 1);
+            }
+            
+            const diff = natal - agora;
+            
+            const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutos = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const segundos = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('dias').textContent = dias.toString().padStart(2, '0');
+            document.getElementById('horas').textContent = horas.toString().padStart(2, '0');
+            document.getElementById('minutos').textContent = minutos.toString().padStart(2, '0');
+            document.getElementById('segundos').textContent = segundos.toString().padStart(2, '0');
+        }
+
+        // Iniciar contador
+        setInterval(atualizarContadorNatal, 1000);
+        atualizarContadorNatal();
+
+        // Efeito de neve
+        function criarNeve() {
+            const neve = document.getElementById('neve');
+            const numFlocos = 50;
+            
+            for (let i = 0; i < numFlocos; i++) {
+                const floco = document.createElement('div');
+                floco.classList.add('floco');
+                floco.innerHTML = '❄';
+                floco.style.left = `${Math.random() * 100}%`;
+                floco.style.animationDuration = `${Math.random() * 5 + 5}s`;
+                floco.style.animationDelay = `${Math.random() * 5}s`;
+                floco.style.fontSize = `${Math.random() * 10 + 10}px`;
+                floco.style.opacity = Math.random() * 0.5 + 0.3;
+                neve.appendChild(floco);
+            }
+        }
+
+        criarNeve();
+
+        // Sistema de carrinho
+        let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+        const carrinhoCount = document.querySelector('.carrinho-count');
+        const modalCarrinho = document.getElementById('modal-carrinho');
+        const abrirCarrinho = document.getElementById('abrir-carrinho');
+        const fecharCarrinho = document.getElementById('fechar-carrinho');
+        const carrinhoItens = document.getElementById('carrinho-itens');
+        const carrinhoTotal = document.getElementById('carrinho-total');
+
+        function atualizarCarrinho() {
+            // Atualizar contador
+            carrinhoCount.textContent = carrinho.reduce((total, item) => total + item.quantidade, 0);
+            
+            // Atualizar modal do carrinho
+            carrinhoItens.innerHTML = '';
+            
+            if (carrinho.length === 0) {
+                carrinhoItens.innerHTML = '<div class="carrinho-vazio">Seu carrinho está vazio</div>';
+                carrinhoTotal.textContent = 'Total: R$ 0,00';
+            } else {
+                let total = 0;
+                
+                carrinho.forEach(item => {
+                    const itemTotal = item.preco * item.quantidade;
+                    total += itemTotal;
+                    
+                    const carrinhoItem = document.createElement('div');
+                    carrinhoItem.classList.add('carrinho-item');
+                    carrinhoItem.innerHTML = `
+                        <img src="${item.imagem}" alt="${item.nome}">
+                        <div class="carrinho-item-info">
+                            <div class="carrinho-item-nome">${item.nome}</div>
+                            <div class="carrinho-item-preco">R$ ${item.preco.toFixed(2)}</div>
+                            <div class="carrinho-item-quantidade">
+                                <button class="diminuir-quantidade" data-id="${item.id}">-</button>
+                                <span>${item.quantidade}</span>
+                                <button class="aumentar-quantidade" data-id="${item.id}">+</button>
+                                <button class="remover-item" data-id="${item.id}"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+                    `;
+                    carrinhoItens.appendChild(carrinhoItem);
+                });
+                
+                carrinhoTotal.textContent = `Total: R$ ${total.toFixed(2)}`;
+                
+                // Adicionar eventos aos botões do carrinho
+                document.querySelectorAll('.diminuir-quantidade').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const id = this.dataset.id;
+                        diminuirQuantidade(id);
+                    });
+                });
+                
+                document.querySelectorAll('.aumentar-quantidade').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const id = this.dataset.id;
+                        aumentarQuantidade(id);
+                    });
+                });
+                
+                document.querySelectorAll('.remover-item').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const id = this.dataset.id;
+                        removerItem(id);
+                    });
+                });
+            }
+            
+            // Salvar carrinho no localStorage
+            localStorage.setItem('carrinho', JSON.stringify(carrinho));
+        }
+
+        function adicionarAoCarrinho(id, nome, preco, imagem) {
+            const itemExistente = carrinho.find(item => item.id === id);
+            
+            if (itemExistente) {
+                itemExistente.quantidade += 1;
+            } else {
+                carrinho.push({
+                    id,
+                    nome,
+                    preco,
+                    imagem,
+                    quantidade: 1
+                });
+            }
+            
+            atualizarCarrinho();
+            
+            // Feedback visual
+            const btn = document.querySelector(`.btn-comprar[data-id="${id}"]`);
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-check"></i> Adicionado!';
+            btn.style.background = 'linear-gradient(to right, var(--verde-escuro), var(--verde-medio))';
+            
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.style.background = 'linear-gradient(to right, var(--verde-medio), var(--verde-claro))';
+            }, 1500);
+        }
+
+        function diminuirQuantidade(id) {
+            const item = carrinho.find(item => item.id === id);
+            
+            if (item.quantidade > 1) {
+                item.quantidade -= 1;
+            } else {
+                removerItem(id);
+            }
+            
+            atualizarCarrinho();
+        }
+
+        function aumentarQuantidade(id) {
+            const item = carrinho.find(item => item.id === id);
+            item.quantidade += 1;
+            atualizarCarrinho();
+        }
+
+        function removerItem(id) {
+            carrinho = carrinho.filter(item => item.id !== id);
+            atualizarCarrinho();
+        }
+
+        // Eventos
+        document.querySelectorAll('.btn-comprar').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const id = this.dataset.id;
+                const nome = this.dataset.nome;
+                const preco = parseFloat(this.dataset.preco);
+                const imagem = this.dataset.imagem;
+                
+                adicionarAoCarrinho(id, nome, preco, imagem);
+            });
+        });
+
+        abrirCarrinho.addEventListener('click', () => {
+            modalCarrinho.style.display = 'flex';
+        });
+
+        fecharCarrinho.addEventListener('click', () => {
+            modalCarrinho.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modalCarrinho) {
+                modalCarrinho.style.display = 'none';
+            }
+        });
+
+        // Newsletter
+        document.getElementById('form-newsletter').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            
+            // Simulação de envio
+            alert(`Obrigado por se inscrever com o e-mail: ${email}! Em breve você receberá nossas ofertas especiais.`);
+            this.reset();
+        });
+
+        // Inicializar carrinho
+        atualizarCarrinho();
+    </script>
+</body>
+</html>
